@@ -1,0 +1,31 @@
+@use '../styles/variables' as *;
+
+.share {
+  position: relative;
+  border-radius: 24px;
+  padding: 34px;
+  color: #fff;
+  overflow: hidden;
+  background:
+    radial-gradient(420px 220px at 100% 0%, rgba(212,175,55,.22), transparent 70%),
+    linear-gradient(155deg, $navy-deep, $navy 70%, $blue 140%);
+  box-shadow: 0 24px 60px rgba(0,54,90,.3);
+}
+.share h3 {
+  font-size: 20px;
+  font-weight: 600;
+}
+.share p {
+  margin: 8px 0 24px;
+  color: rgba(255,255,255,.78);
+  font-size: 15px;
+}
+.btnRow {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: $bp-sm) {
+  .share { border-radius: 20px; padding: 26px 22px; }
+}

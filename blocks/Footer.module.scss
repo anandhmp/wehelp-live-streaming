@@ -1,0 +1,40 @@
+@use '../styles/variables' as *;
+
+.footer {
+  background: $navy-ink;
+  color: rgba(255,255,255,.65);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212,175,55,.6), transparent);
+  }
+}
+.inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 26px 32px calc(26px + env(safe-area-inset-bottom));
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 13px;
+}
+.gold {
+  color: $gold;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-size: 11.5px;
+}
+
+@media (max-width: $bp-sm) {
+  .inner {
+    justify-content: center;
+    text-align: center;
+    padding: 22px 18px calc(22px + env(safe-area-inset-bottom));
+  }
+}
