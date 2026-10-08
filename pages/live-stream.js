@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import LivePlayer from "@/components/LivePlayer";
 
 const CHANNELS = [
@@ -13,9 +13,18 @@ export default function LiveStreamPage() {
   const [selectedChannel, setSelectedChannel] = useState(CHANNELS[0]);
   const [streamQuality, setStreamQuality] = useState("main"); // "main" or "sub"
   const [copiedUrl, setCopiedUrl] = useState(false);
+  const [currentTime, setCurrentTime] = useState("");
 
-  const streamSrc = streamQuality === "main" 
-    ? `/api/stream/${selectedChannel.id}` 
+  useEffect(() => {
+    setCurrentTime(new Date().toLocaleTimeString());
+    const interval = setInterval(() => {
+      setCurrentTime(new Date().toLocaleTimeString());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const streamSrc = streamQuality === "main"
+    ? `/api/stream/${selectedChannel.id}`
     : `/api/stream/${selectedChannel.id}-sub`;
 
   const rtspUrl = `rtsp://admin:14789@192.168.1.240:554/cam/realmonitor?channel=${selectedChannel.channelNum}&subtype=${streamQuality === "main" ? 0 : 1}`;
@@ -45,7 +54,11 @@ export default function LiveStreamPage() {
             </div>
             <div className="d-flex align-items-center gap-2 mt-2 mt-sm-0">
               <span className="badge bg-success py-2 px-3">DVR Online</span>
-              <span className="badge bg-secondary py-2 px-3">{new Date().toLocaleTimeString()}</span>
+              {currentTime && (
+                <span className="badge bg-secondary py-2 px-3" suppressHydrationWarning>
+                  {currentTime}
+                </span>
+              )}
             </div>
           </header>
 
@@ -55,9 +68,8 @@ export default function LiveStreamPage() {
               <button
                 key={ch.id}
                 onClick={() => setSelectedChannel(ch)}
-                className={`btn btn-sm ${
-                  selectedChannel.id === ch.id ? "btn-primary fw-bold" : "btn-outline-secondary text-light"
-                }`}
+                className={`btn btn-sm ${selectedChannel.id === ch.id ? "btn-primary fw-bold" : "btn-outline-secondary text-light"
+                  }`}
               >
                 📹 {ch.name}
               </button>
