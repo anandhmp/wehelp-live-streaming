@@ -11,7 +11,7 @@ const CHANNEL_NUM_MAP = {
     "4": 4,
 };
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
     const { channel } = req.query;
     const channelNum = CHANNEL_NUM_MAP[channel];
 
@@ -24,21 +24,25 @@ export default function handler(req, res) {
     const pass = process.env.DVR_PASS || "14789";
     const url = `https://${dvrIp}/cgi-bin/snapshot.cgi?channel=${channelNum}`;
 
-    execFile(
-        "curl",
-        ["-k", "-s", "--digest", "-u", `${user}:${pass}`, url],
-        { encoding: "buffer", maxBuffer: 10 * 1024 * 1024 },
-        (err, stdout) => {
-            if (err || !stdout || stdout.length < 500) {
-                return res.status(502).json({
-                    error: "Failed to capture snapshot from DVR",
-                    details: stdout ? stdout.toString() : err?.message,
-                });
-            }
+    return new Promise((resolve) => {
+        execFile(
+            "curl",
+            ["-k", "-s", "--digest", "-u", `${user}:${pass}`, url],
+            { encoding: "buffer", maxBuffer: 10 * 1024 * 1024 },
+            (err, stdout) => {
+                if (err || !stdout || stdout.length < 500) {
+                    res.status(502).json({
+                        error: "Failed to capture snapshot from DVR",
+                        details: stdout ? stdout.toString() : err?.message,
+                    });
+                    return resolve();
+                }
 
-            res.setHeader("Content-Type", "image/jpeg");
-            res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-            return res.status(200).send(stdout);
-        }
-    );
+                res.setHeader("Content-Type", "image/jpeg");
+                res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+                res.status(200).send(stdout);
+                return resolve();
+            }
+        );
+    });
 }

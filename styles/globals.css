@@ -1,0 +1,136 @@
+/* =========================================================
+   Global Dark Theme for WE Help Charitable Trust Live Stream
+   ========================================================= */
+
+:root {
+  --bg-main: #090d16;
+  --bg-card: #111827;
+  --bg-card-header: #1a2234;
+  --bg-card-footer: #0f172a;
+  --border-color: rgba(255, 255, 255, 0.12);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  --accent-blue: #2563eb;
+  --accent-cyan: #06b6d4;
+  --accent-green: #10b981;
+}
+
+html,
+body,
+#__next {
+  background-color: var(--bg-main) !important;
+  color: var(--text-main) !important;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Ensure bootstrap dark overrides */
+.bg-dark {
+  background-color: var(--bg-card) !important;
+}
+
+.text-secondary {
+  color: var(--text-muted) !important;
+}
+
+.card {
+  background-color: var(--bg-card) !important;
+  border: 1px solid var(--border-color) !important;
+  border-radius: 12px !important;
+  overflow: hidden;
+}
+
+.card-header {
+  background-color: var(--bg-card-header) !important;
+  border-bottom: 1px solid var(--border-color) !important;
+  color: var(--text-main) !important;
+}
+
+.card-footer {
+  background-color: var(--bg-card-footer) !important;
+  border-top: 1px solid var(--border-color) !important;
+}
+
+/* Code & pre styling */
+code {
+  color: #38bdf8 !important;
+  background-color: #050811 !important;
+  padding: 3px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 0.85em;
+  word-break: break-all;
+}
+
+/* Nav & Channel Pills */
+.channel-btn {
+  background-color: #1a2234;
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.channel-btn:hover {
+  background-color: #243048;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.channel-btn.active {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #ffffff;
+  border-color: #3b82f6;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+}
+
+/* Spec list items */
+.spec-list {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+.spec-list li {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.88rem;
+}
+
+.spec-list li:last-child {
+  border-bottom: none;
+}
+
+.spec-label {
+  color: var(--text-muted);
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.spec-val {
+  color: #f1f5f9;
+  font-weight: 600;
+  text-align: right;
+}
+
+/* Charity Header Brand */
+.charity-navbar {
+  background-color: #0c1322;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}

@@ -2,9 +2,13 @@ const STREAM_BASE = process.env.STREAM_BASE_URL || "http://localhost:8888";
 
 const CHANNEL_MAP = {
     hall: "hall",
+    "hall-sub": "hall-sub",
     kitchen: "kitchen",
+    "kitchen-sub": "kitchen-sub",
     sitout: "sitout",
+    "sitout-sub": "sitout-sub",
     room1: "room1",
+    "room1-sub": "room1-sub",
     room2: "room2",
     room3: "room3",
 };
