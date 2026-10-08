@@ -1,0 +1,75 @@
+# MediaMTX configuration for CP Plus DVR (CP-UVR-0401E1V-I)
+# DVR IP: 192.168.1.240, RTSP Port: 554
+
+logLevel: info
+logDestinations: [stdout]
+
+# RTSP Server port (in case other local apps want to pull from mediamtx)
+rtspAddress: :8554
+
+# WebRTC Server port
+webrtc: yes
+webrtcAddress: :8889
+
+# HLS Server configuration for Next.js web application
+hls: yes
+hlsAddress: :8888
+hlsAlwaysRemux: no
+hlsVariant: lowLatency
+hlsSegmentCount: 7
+hlsSegmentDuration: 1s
+hlsPartDuration: 200ms
+hlsAllowOrigins: ["*"]
+
+paths:
+  # ==========================================
+  # Channel 1: Hall
+  # ==========================================
+  hall:
+    source: rtsp://admin:14789@192.168.1.240:554/cam/realmonitor?channel=1&subtype=0
+    sourceOnDemand: yes
+    rtspTransport: tcp
+
+  hall-sub:
+    source: rtsp://admin:14789@192.168.1.240:554/cam/realmonitor?channel=1&subtype=1
+    sourceOnDemand: yes
+    rtspTransport: tcp
+
+  # ==========================================
+  # Channel 2: Kitchen
+  # ==========================================
+  kitchen:
+    source: rtsp://admin:14789@192.168.1.240:554/cam/realmonitor?channel=2&subtype=0
+    sourceOnDemand: yes
+    rtspTransport: tcp
+
+  kitchen-sub:
+    source: rtsp://admin:14789@192.168.1.240:554/cam/realmonitor?channel=2&subtype=1
+    sourceOnDemand: yes
+    rtspTransport: tcp
+
+  # ==========================================
+  # Channel 3: Sitout
+  # ==========================================
+  sitout:
+    source: rtsp://admin:14789@192.168.1.240:554/cam/realmonitor?channel=3&subtype=0
+    sourceOnDemand: yes
+    rtspTransport: tcp
+
+  sitout-sub:
+    source: rtsp://admin:14789@192.168.1.240:554/cam/realmonitor?channel=3&subtype=1
+    sourceOnDemand: yes
+    rtspTransport: tcp
+
+  # ==========================================
+  # Channel 4: Room 1
+  # ==========================================
+  room1:
+    source: rtsp://admin:14789@192.168.1.240:554/cam/realmonitor?channel=4&subtype=0
+    sourceOnDemand: yes
+    rtspTransport: tcp
+
+  room1-sub:
+    source: rtsp://admin:14789@192.168.1.240:554/cam/realmonitor?channel=4&subtype=1
+    sourceOnDemand: yes
+    rtspTransport: tcp
